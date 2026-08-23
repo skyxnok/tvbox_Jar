@@ -1,0 +1,16 @@
+{
+  "parse_mode": "HTML",
+  "caption": "<b>📦 {{REPO}} 构建通知</b>\n━━━━━━━━━━━━━━\n\n<b>📌 版本：</b><code>{{VERSION}}</code>\n<b>🔑 MD5：</b><code>{{MD5}}</code>\n<b>🕒 时间：</b><i>{{TIME}}</i>\n<b>🌿 分支：</b><code>{{BRANCH}}</code>\n<b>📝 Commit：</b><code>{{SHA_SHORT}}</code>\n\n<blockquote expandable>📊 构建详情\n状态：{{STATUS}}\n运行 ID：{{RUN_ID}}\n触发方式：{{EVENT}}</blockquote>",
+  "reply_markup": {
+    "inline_keyboard": [
+      [
+        {"text": "📥 下载 Jar", "url": "{{RELEASE_URL}}"},
+        {"text": "📋 构建日志", "url": "{{LOG_URL}}"}
+      ],
+      [
+        {"text": "📂 仓库地址", "url": "{{REPO_URL}}"},
+        {"text": "🐛 提交记录", "url": "{{COMMIT_URL}}"}
+      ]
+    ]
+  }
+}

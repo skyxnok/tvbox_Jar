@@ -1,0 +1,320 @@
+{
+  "spider": "https://tvbox.201562.xyz/jar/bgcode.jar;md5;57207be20db6c4e7b462c673ac9280e4",
+  "lives": [
+    {
+      "name": "kimwang1978收集的直播【github】",
+      "type": 0,
+      "url": "https://live.iptv365.org/live.txt"
+    }
+  ],
+  "sites": [
+    {
+      "key": "csp_Douban",
+      "name": "分类｜豆瓣",
+      "type": 3,
+      "api": "csp_Douban",
+      "searchable": 1,
+      "ext": "https://cdn.jsdelivr.net/gh/echo769/tvbox@master/json/douban.json"
+    },
+    {
+      "key": "csp_Anime1",
+      "name": "动漫｜56动漫",
+      "type": 3,
+      "api": "csp_Anime1",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Jpyy",
+      "name": "影视｜金鹰｜嘎",
+      "type": 3,
+      "api": "csp_Jpyy",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Mb",
+      "name": "动漫｜曼波",
+      "type": 3,
+      "api": "csp_Mb",
+      "searchable": 1
+    },
+    {
+      "key": "csp_AppYsV2",
+      "name": "影视｜应用影视",
+      "type": 3,
+      "api": "csp_AppYsV2",
+      "searchable": 1,
+      "ext": "https://qpcj.69mini.com/api.php/app/"
+    },
+    {
+      "key": "csp_DyGang",
+      "name": "影视｜电影港",
+      "type": 3,
+      "api": "csp_DyGang",
+      "searchable": 1
+    },
+    {
+      "key": "csp_IQIYI",
+      "name": "影视｜爱奇艺",
+      "type": 3,
+      "api": "csp_IQIYI",
+      "searchable": 1
+    },
+    {
+      "key": "csp_MGTV",
+      "name": "影视｜芒果台",
+      "type": 3,
+      "api": "csp_MGTV",
+      "searchable": 1
+    },
+    {
+      "key": "csp_PiaoHua",
+      "name": "影视｜飘花",
+      "type": 3,
+      "api": "csp_PiaoHua",
+      "searchable": 1
+    },
+    {
+      "key": "csp_SixV",
+      "name": "影视｜6V电影网",
+      "type": 3,
+      "api": "csp_SixV",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Xl720",
+      "name": "影视｜迅雷电影天堂",
+      "type": 3,
+      "api": "csp_Xl720",
+      "searchable": 1
+    },
+    {
+      "key": "csp_SP360",
+      "name": "影视｜360",
+      "type": 3,
+      "api": "csp_SP360",
+      "searchable": 1
+    }
+  ],
+  "parses": [
+    {
+      "name": "解析聚合",
+      "type": 3,
+      "url": "Demo"
+    },
+    {
+      "name": "Web聚合",
+      "type": 3,
+      "url": "Web"
+    },
+    {
+      "name": "Json并发",
+      "type": 2,
+      "url": "Parallel"
+    },
+    {
+      "name": "Json轮询",
+      "type": 2,
+      "url": "Sequence"
+    },
+    {
+      "name": "夜幕",
+      "type": 0,
+      "url": "https://www.yemu.xyz/?url="
+    },
+    {
+      "name": "虾米",
+      "type": 0,
+      "url": "https://jx.xmflv.com/?url="
+    },
+    {
+      "name": "M3U8TV",
+      "type": 0,
+      "url": "https://jx.m3u8.tv/jiexi/?url="
+    }
+  ],
+  "flags": [
+    "youku",
+    "qq",
+    "QQ",
+    "iqiyi",
+    "qiyi",
+    "letv",
+    "sohu",
+    "tudou",
+    "pptv",
+    "PPTV",
+    "mgtv",
+    "wasu",
+    "bilibili",
+    "xmm",
+    "xigua",
+    "m1905"
+  ],
+  "ijk": [
+    {
+      "group": "软解码",
+      "options": [
+        {
+          "category": 4,
+          "name": "opensles",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "overlay-format",
+          "value": "842225234"
+        },
+        {
+          "category": 4,
+          "name": "framedrop",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "soundtouch",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "start-on-prepared",
+          "value": "1"
+        },
+        {
+          "category": 1,
+          "name": "http-detect-range-support",
+          "value": "0"
+        },
+        {
+          "category": 1,
+          "name": "fflags",
+          "value": "fastseek"
+        },
+        {
+          "category": 2,
+          "name": "skip_loop_filter",
+          "value": "48"
+        },
+        {
+          "category": 4,
+          "name": "reconnect",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "enable-accurate-seek",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-auto-rotate",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-handle-resolution-change",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-hevc",
+          "value": "0"
+        },
+        {
+          "category": 1,
+          "name": "dns_cache_timeout",
+          "value": "600000000"
+        }
+      ]
+    },
+    {
+      "group": "硬解码",
+      "options": [
+        {
+          "category": 4,
+          "name": "opensles",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "overlay-format",
+          "value": "842225234"
+        },
+        {
+          "category": 4,
+          "name": "framedrop",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "soundtouch",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "start-on-prepared",
+          "value": "1"
+        },
+        {
+          "category": 1,
+          "name": "http-detect-range-support",
+          "value": "0"
+        },
+        {
+          "category": 1,
+          "name": "fflags",
+          "value": "fastseek"
+        },
+        {
+          "category": 2,
+          "name": "skip_loop_filter",
+          "value": "48"
+        },
+        {
+          "category": 4,
+          "name": "reconnect",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "enable-accurate-seek",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-auto-rotate",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-handle-resolution-change",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-hevc",
+          "value": "1"
+        },
+        {
+          "category": 1,
+          "name": "dns_cache_timeout",
+          "value": "600000000"
+        }
+      ]
+    }
+  ],
+  "ads": [
+    "wan.51img1.com",
+    "iqiyi.hbuioo.com",
+    "vip.ffzyad.com"
+  ]
+}

@@ -1,0 +1,118 @@
+name: build_json
+
+on:
+  # schedule:
+    # - cron: 6 */8 * * *
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+            java-version: '17'
+            distribution: 'adopt'
+            cache: gradle
+      - name: 创建版本号
+        run: |              
+             if ! mv ./config/version  version; then
+                    echo "Failed to move the file."
+                    exit 1
+             fi
+                 
+             echo "version=$(bash ./config/version.sh)" >> $GITHUB_ENV
+             echo "**发布时间：$(date +'%Y-%m-%d %H:%M:%S')**" >> bgcode.txt
+             mv version config/version
+      - name: Build With Gradle
+        run: |
+          chmod +x gradlew ./jar/genJar.sh
+          ./gradlew assembleRelease --no-daemon
+          ./jar/genJar.sh
+          echo "**md5：$(cat ./jar/bgcode_md5.txt)**" >> bgcode.txt
+          echo "JAR_MD5=$(cat ./jar/bgcode_md5.txt)" >> $GITHUB_ENV
+          echo "BUILD_TIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Spider
+          path: ./jar/bg/*
+      - name: Commit and push changes
+        run: |
+            git config --local user.email bglhcode@icloud.com
+            git config --local user.name bgcode
+            git pull
+            git add ./jar/bgcode* ./config/version 
+            git commit -m "更新jar包  时间：$(date +'%Y-%m-%d %H:%M:%S')"
+            git push
+      - name: 发布到release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.version }}
+          body_path: bgcode.txt
+          files: ./jar/bg/*
+      # ── 通知：sendPhoto 带模板 banner ──────────────────────────
+      - name: Notify Banner
+        if: success()
+        uses: shyxnok/send_email@v1.1.0
+        with:
+          channel: telegram
+          telegram_method: sendPhoto
+          telegram_photo: 'https://picsum.photos/id/180/800/400'
+          telegram_parse_mode: HTML
+          telegram_template: './templates/build.json'
+          telegram_chat_id: "${{ secrets.TELEGRAM_CHAT_ID }}"
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          REPO: '${{ github.repository }}'
+          VERSION: '${{ env.version }}'
+          MD5: '${{ env.JAR_MD5 }}'
+          TIME: '${{ env.BUILD_TIME }}'
+          BRANCH: '${{ github.ref_name }}'
+          SHA_SHORT: '${{ github.sha }}'
+          STATUS: '✅ 成功'
+          RUN_ID: '${{ github.run_id }}'
+          EVENT: '${{ github.event_name }}'
+          RELEASE_URL: '${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ env.version }}'
+          LOG_URL: '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+          REPO_URL: '${{ github.server_url }}/${{ github.repository }}'
+          COMMIT_URL: '${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}'
+
+      # ── 通知：sendDocument 发送 jar 文件 ───────────────────────
+      - name: Notify Jar
+        if: success()
+        uses: shyxnok/send_email@main
+        with:
+          channel: telegram
+          telegram_method: sendDocument
+          telegram_document: './jar/bg/bgcode.jar'
+          telegram_document_caption: |
+            <b>📦 bgcode.jar</b>
+            版本：<code>${{ env.version }}</code>
+            MD5：<code>${{ env.JAR_MD5 }}</code>
+          telegram_parse_mode: HTML
+          telegram_chat_id: "${{ secrets.TELEGRAM_CHAT_ID }}"
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
+      # ── 通知：sendMessage 文本（成功/失败都发）─────────────────
+      - name: Notify Status
+        if: always()
+        uses: shyxnok/send_email@main
+        with:
+          channel: telegram
+          body: |
+            ${{ job.status == 'success' && '✅' || '❌' }} <b>Build ${{ job.status }}</b>
+            <code>${{ github.repository }}</code>
+            Version: <code>${{ env.version }}</code>
+            ${{ job.status == 'success' && format('MD5: <code>{0}</code>', env.JAR_MD5) || '' }}
+            ${{ job.status == 'failure' && format('<a href=\"{0}/{1}/actions/runs/{2}\">📋 View logs</a>', github.server_url, github.repository, github.run_id) || '' }}
+          telegram_chat_id: "${{ secrets.TELEGRAM_CHAT_ID }}"
+          telegram_parse_mode: HTML
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
