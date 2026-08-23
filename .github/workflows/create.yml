@@ -50,6 +50,24 @@ jobs:
             git add ./jar/bgcode* ./config/version 
             git commit -m "更新jar包  时间：$(date +'%Y-%m-%d %H:%M:%S')"
             git push
+      # ── 发布到 Cloudflare Pages（tvbox.201562.xyz）───────────────
+      - name: Prepare Pages dist
+        if: success()
+        run: |
+          mkdir -p deploy-dist/jar/bg
+          cp ./jar/bgcode.json ./jar/bgcode.jar ./jar/bgcode_md5.txt deploy-dist/jar/
+          cp ./jar/bg/bgcode.jar ./jar/bg/bgcode_md5.txt deploy-dist/jar/bg/
+          cp ./pages/index.html deploy-dist/index.html
+          printf '/* /index.html 200\n' > deploy-dist/_redirects
+      - name: Deploy to Cloudflare Pages
+        if: success() && secrets.CLOUDFLARE_API_TOKEN != ''
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 0de3be25561f0962035026f54f3ec5bd
+          projectName: tvbox
+          directory: ./deploy-dist
+          branch: main
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         with:
