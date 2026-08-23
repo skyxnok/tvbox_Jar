@@ -97,7 +97,7 @@ public class MuteFun extends Spider {
                         .put("vod_remarks", item.optString("vod_remarks")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -117,10 +117,14 @@ public class MuteFun extends Spider {
             JSONArray vids = play.getJSONArray("vids");
             for (int j = 0; j < vids.length(); j++) {
                 if (j > 0) playUrl.append("#");
-                playUrl.append(vids.optString(j)).append("@@").append(play.optString("player"));
+                String vid = vids.optString(j);
+                playUrl.append(vid.contains("$") ? vid : "第" + (j + 1) + "集$" + vid).append("@@").append(play.optString("player"));
             }
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", html.optString("vod_name"));
+        vod.put("vod_pic", html.optString("vod_pic"));
         vod.put("vod_year", html.optString("vod_year"));
         vod.put("vod_remarks", html.optString("vod_remarks"));
         vod.put("vod_actor", "");

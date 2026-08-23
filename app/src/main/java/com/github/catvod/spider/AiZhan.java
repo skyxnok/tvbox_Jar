@@ -123,7 +123,7 @@ public class AiZhan extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -135,6 +135,9 @@ public class AiZhan extends Spider {
     public String detailContent(List<String> ids) throws Exception {
         JSONObject html = request(HOST + "/api.php/Vod/get_detail?vod_id=" + ids.get(0), null).getJSONObject("info");
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", html.optString("vod_name"));
+        vod.put("vod_pic", html.optString("vod_pic"));
         vod.put("type_name", html.optString("vod_class"));
         vod.put("vod_year", html.optString("vod_year"));
         vod.put("vod_area", html.optString("vod_area"));

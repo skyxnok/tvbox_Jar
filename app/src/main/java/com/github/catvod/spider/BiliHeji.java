@@ -88,7 +88,7 @@ public class BiliHeji extends Spider {
                         .put("vod_remarks", gettime(item.optString("duration"))));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -104,6 +104,10 @@ public class BiliHeji extends Spider {
             playUrl.append(p.optString("part").replace("#", "")).append("$").append(ids.get(0)).append("@@").append(p.optInt("cid"));
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", data.optString("title"));
+        String bpic = data.optString("pic");
+        vod.put("vod_pic", bpic.startsWith("http") ? bpic : "https:" + bpic);
         vod.put("vod_director", data.optJSONObject("owner") == null ? "" : data.optJSONObject("owner").optString("name"));
         vod.put("vod_content", data.optString("desc"));
         vod.put("vod_play_from", "哔哩");

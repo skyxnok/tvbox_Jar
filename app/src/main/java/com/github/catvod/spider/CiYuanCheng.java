@@ -127,7 +127,7 @@ public class CiYuanCheng extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -163,7 +163,9 @@ public class CiYuanCheng extends Spider {
             playUrl.put(allEp.toString());
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", id);
         vod.put("vod_name", html.optString("title"));
+        vod.put("vod_pic", html.optString("cover_url"));
         vod.put("type_name", html.optString("state"));
         vod.put("vod_year", html.optString("year"));
         vod.put("vod_area", html.optString("area"));

@@ -103,7 +103,7 @@ public class XingYaDuanJu extends Spider {
                         .put("vod_remarks", t.optString("theme")));
             }
         }
-        return new JSONObject().put("list", videos).put("page", pg).put("pagecount", 9999)
+        return new JSONObject().put("list", videos).put("page", Integer.parseInt(pg)).put("pagecount", 9999)
                 .put("limit", 90).put("total", 999999).toString();
     }
 
@@ -145,6 +145,8 @@ public class XingYaDuanJu extends Spider {
         }
         JSONObject vod = new JSONObject();
         vod.put("vod_id", did);
+        vod.put("vod_name", data.optString("title"));
+        vod.put("vod_pic", data.optString("cover_url"));
         vod.put("vod_content", content);
         vod.put("vod_remarks", remarks);
         vod.put("vod_area", area);
@@ -178,7 +180,7 @@ public class XingYaDuanJu extends Spider {
                         .put("vod_remarks", vod.optString("score_str")));
             }
         }
-        return new JSONObject().put("list", videos).put("page", "1").put("pagecount", 9999)
+        return new JSONObject().put("list", videos).put("page", 1).put("pagecount", 9999)
                 .put("limit", 90).put("total", 999999).toString();
     }
 }

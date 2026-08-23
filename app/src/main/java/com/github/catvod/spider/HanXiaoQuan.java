@@ -200,7 +200,7 @@ public class HanXiaoQuan extends Spider {
                         .put("vod_year", item.optString("shorthand")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -228,6 +228,11 @@ public class HanXiaoQuan extends Spider {
         }
         JSONObject series = html.optJSONObject("series");
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", series == null ? "" : series.optString("name"));
+        String thumb = series != null && series.optJSONObject("image") != null ? series.getJSONObject("image").optString("thumb") : "";
+        if (thumb.isEmpty() && series != null && series.optJSONObject("image") != null) thumb = series.getJSONObject("image").optString("poster");
+        vod.put("vod_pic", thumb);
         vod.put("type_name", "");
         vod.put("vod_year", "");
         vod.put("vod_area", "");

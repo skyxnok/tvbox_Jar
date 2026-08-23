@@ -132,7 +132,7 @@ public class XiFanDongMan extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -146,6 +146,13 @@ public class XiFanDongMan extends Spider {
         Document doc = Jsoup.parse(html);
         Element info = doc.selectFirst("div.detail-info.rel.flex-auto.wow.lightSpeedIn");
         JSONObject vod = new JSONObject();
+        Element titleEl = doc.selectFirst("div.detail-info h3.slide-info-title");
+        Element picEl = doc.selectFirst("div.detail-pic img");
+        String vPic = picEl != null ? picEl.attr("data-src") : "";
+        if (vPic.isEmpty() && picEl != null) vPic = picEl.attr("src");
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", titleEl != null ? titleEl.text() : "");
+        vod.put("vod_pic", vPic);
         vod.put("type_name", "");
         vod.put("vod_year", "");
         vod.put("vod_area", "");

@@ -3,7 +3,7 @@ name: build_json
 on:
   # schedule:
     # - cron: 6 */8 * * *
-
+  push: 
   workflow_dispatch:
 
 jobs:

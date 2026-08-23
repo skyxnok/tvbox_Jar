@@ -94,7 +94,7 @@ public class JianPian extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -150,6 +150,9 @@ public class JianPian extends Spider {
             playUrl.append(item.optString("url"));
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", html.optString("title"));
+        vod.put("vod_pic", imghost + html.optString("path", html.optString("thumbnail")));
         String typeName = "";
         if (html.has("category")) {
             JSONArray cats = html.getJSONArray("category");

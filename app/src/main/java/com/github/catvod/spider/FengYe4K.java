@@ -122,7 +122,7 @@ public class FengYe4K extends Spider {
             }
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -162,6 +162,15 @@ public class FengYe4K extends Spider {
         Matcher cm = Pattern.compile("<div id=\"height_limit\".*?>([\\s\\S]*?)<").matcher(html);
         if (cm.find()) content = cm.group(1).replace("&amp;", "&").replace("&nbsp;", "&");
         JSONObject vod = new JSONObject();
+        String vTitle = "";
+        Matcher tm = Pattern.compile("<h3 class=\"slide-info-title[^\"]*\">(.*?)</h3>").matcher(html);
+        if (tm.find()) vTitle = tm.group(1).trim();
+        String vPic = "";
+        Matcher pm = Pattern.compile("data-src=\"(.*?)\"").matcher(html);
+        if (pm.find()) vPic = pm.group(1).replace("&amp;", "&");
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", vTitle);
+        vod.put("vod_pic", vPic);
         vod.put("type_name", "");
         vod.put("vod_year", "");
         vod.put("vod_area", "");

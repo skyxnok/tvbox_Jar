@@ -98,7 +98,7 @@ public class BiliYingshi extends Spider {
                         .put("vod_year", item.optString("order")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -120,6 +120,9 @@ public class BiliYingshi extends Spider {
             count++;
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", r.optString("title"));
+        vod.put("vod_pic", r.optString("cover"));
         vod.put("type_name", joinArray(r.opt("styles"), "\n"));
         String pubTime = r.optJSONObject("publish") == null ? "" : r.optJSONObject("publish").optString("pub_time");
         vod.put("vod_year", pubTime.contains("-") ? pubTime.split("-")[0] : "");

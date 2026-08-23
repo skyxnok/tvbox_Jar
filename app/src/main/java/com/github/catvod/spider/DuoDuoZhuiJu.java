@@ -152,7 +152,7 @@ public class DuoDuoZhuiJu extends Spider {
                         .put("vod_year", item.optString("vod_year")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -212,6 +212,9 @@ public class DuoDuoZhuiJu extends Spider {
             count++;
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", id);
+        vod.put("vod_name", res.optString("vod_name"));
+        vod.put("vod_pic", res.optString("vod_pic"));
         vod.put("type_name", res.optString("vod_class"));
         vod.put("vod_year", res.optString("vod_year"));
         vod.put("vod_area", res.optString("vod_area"));

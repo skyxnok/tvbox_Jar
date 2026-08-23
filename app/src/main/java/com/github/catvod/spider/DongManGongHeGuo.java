@@ -192,7 +192,7 @@ public class DongManGongHeGuo extends Spider {
                         .put("vod_year", item.optString("year")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -219,6 +219,9 @@ public class DongManGongHeGuo extends Spider {
         }
         String pf = playFrom.toString().replace("cn", "国语").replace("en", "英语").replace("newup-jp", "日语");
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", id);
+        vod.put("vod_name", html.optString("name"));
+        vod.put("vod_pic", html.optString("pic"));
         vod.put("type_name", html.optString("type"));
         vod.put("vod_year", html.optString("year"));
         vod.put("vod_area", html.optString("area"));

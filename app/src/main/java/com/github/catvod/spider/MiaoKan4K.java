@@ -151,7 +151,7 @@ public class MiaoKan4K extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -190,6 +190,9 @@ public class MiaoKan4K extends Spider {
         }
         JSONObject vodInfo = res.getJSONObject("vod");
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", vodInfo.optString("vod_name"));
+        vod.put("vod_pic", vodInfo.optString("vod_pic"));
         vod.put("type_name", vodInfo.optString("vod_class"));
         vod.put("vod_year", vodInfo.optString("vod_year"));
         vod.put("vod_area", vodInfo.optString("vod_area"));

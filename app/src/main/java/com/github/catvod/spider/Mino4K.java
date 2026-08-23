@@ -138,7 +138,7 @@ public class Mino4K extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -167,6 +167,9 @@ public class Mino4K extends Spider {
             playUrl.put(sb.toString());
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", id);
+        vod.put("vod_name", res.optString("vod_name"));
+        vod.put("vod_pic", res.optString("vod_pic"));
         vod.put("type_name", res.optString("vod_tag"));
         vod.put("vod_year", res.optString("vod_year"));
         vod.put("vod_area", res.optString("vod_area"));

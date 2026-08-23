@@ -162,7 +162,7 @@ public class GuaZiYingShi extends Spider {
                         .put("vod_year", item.optString("vod_year")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -191,7 +191,9 @@ public class GuaZiYingShi extends Spider {
             }
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", id);
         vod.put("vod_name", info.optString("vod_name"));
+        vod.put("vod_pic", info.optString("vod_pic"));
         JSONArray videoTag = info.optJSONArray("videoTag");
         String typeName = "";
         if (videoTag != null) {

@@ -323,7 +323,7 @@ public class Lanerc extends Spider {
                         .put("vod_pic", pic(item.optString("vod_pic"))));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -344,11 +344,15 @@ public class Lanerc extends Spider {
             JSONArray video = play.getJSONArray("video");
             for (int j = 0; j < video.length(); j++) {
                 if (j > 0) playUrl.append("#");
-                playUrl.append(video.optString(j)).append("@@").append(player);
+                String vid = video.optString(j);
+                playUrl.append(vid.contains("$") ? vid : "第" + (j + 1) + "集$" + vid).append("@@").append(player);
             }
         }
         JSONObject info = html.getJSONObject("video_play_info");
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", info.optString("vod_name"));
+        vod.put("vod_pic", info.optString("vod_pic"));
         vod.put("type_name", info.optString("vod_class"));
         vod.put("vod_year", info.optString("vod_year"));
         vod.put("vod_area", "");

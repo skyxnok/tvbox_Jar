@@ -186,10 +186,8 @@ public class HeMaDuanJu extends Spider {
         vod.put("vod_actor", actor.toString());
         vod.put("vod_director", "");
         vod.put("vod_content", bookInfo.optString("introduction"));
-        if (episodes.length() > 0) {
-            vod.put("vod_play_from", "河马剧场");
-            vod.put("vod_play_url", episodes.toString());
-        }
+        vod.put("vod_play_from", episodes.length() > 0 ? "河马剧场" : "");
+        vod.put("vod_play_url", episodes.toString());
         return new JSONObject().put("list", new JSONArray().put(vod)).toString();
     }
 
@@ -254,7 +252,7 @@ public class HeMaDuanJu extends Spider {
             }
         }
         int total = pp.optInt("pages", 1);
-        return new JSONObject().put("list", videos).put("page", pg).put("pagecount", total)
+        return new JSONObject().put("list", videos).put("page", Integer.parseInt(pg)).put("pagecount", total)
                 .put("limit", videos.length()).put("total", videos.length() * total).toString();
     }
 }

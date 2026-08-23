@@ -160,7 +160,7 @@ public class MiFun extends Spider {
                         .put("vod_year", ""));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -193,8 +193,12 @@ public class MiFun extends Spider {
             }
             playUrl.append(urlArr);
         }
+        JSONObject vodInfo = res.optJSONObject("vod");
         JSONObject vod = new JSONObject();
-        vod.put("type_name", res.optJSONObject("vod") == null ? "" : res.getJSONObject("vod").optString("vod_class"));
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", vodInfo == null ? "" : vodInfo.optString("vod_name"));
+        vod.put("vod_pic", vodInfo == null ? "" : vodInfo.optString("vod_pic"));
+        vod.put("type_name", vodInfo == null ? "" : vodInfo.optString("vod_class"));
         vod.put("vod_year", res.optJSONObject("vod") == null ? "" : res.getJSONObject("vod").optString("vod_year"));
         vod.put("vod_area", res.optJSONObject("vod") == null ? "" : res.getJSONObject("vod").optString("vod_area"));
         vod.put("vod_remarks", res.optJSONObject("vod") == null ? "" : res.getJSONObject("vod").optString("vod_remarks"));

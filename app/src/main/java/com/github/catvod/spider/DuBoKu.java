@@ -114,7 +114,7 @@ public class DuBoKu extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -133,6 +133,9 @@ public class DuBoKu extends Spider {
             playUrl.append(item.optString("EpisodeName")).append("$").append(decode(item.optString("VId")));
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", html.optString("Name"));
+        vod.put("vod_pic", decode(html.optString("TnId")));
         vod.put("type_name", html.optString("Genre"));
         vod.put("vod_year", html.optString("ReleaseYear"));
         vod.put("vod_area", html.optString("Region"));

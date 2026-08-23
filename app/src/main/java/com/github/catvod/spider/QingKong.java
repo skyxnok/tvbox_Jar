@@ -78,7 +78,7 @@ public class QingKong extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -107,6 +107,9 @@ public class QingKong extends Spider {
         }
         JSONObject res = data.getJSONObject("detail");
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", res.optString("title"));
+        vod.put("vod_pic", res.optString("cover"));
         vod.put("type_name", res.optString("tags"));
         vod.put("vod_year", res.optString("year"));
         vod.put("vod_area", res.optString("area"));

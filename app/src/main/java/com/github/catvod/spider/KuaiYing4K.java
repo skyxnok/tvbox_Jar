@@ -148,7 +148,7 @@ public class KuaiYing4K extends Spider {
             videos.put(v);
         }
         JSONObject result = new JSONObject();
-        result.put("page", pg);
+        result.put("page", Integer.parseInt(pg));
         result.put("pagecount", 99999);
         result.put("limit", videos.length());
         result.put("total", 99999);
@@ -203,6 +203,9 @@ public class KuaiYing4K extends Spider {
             playUrl.append(list.get(i)[1]);
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", id);
+        vod.put("vod_name", html.optString("vod_name"));
+        vod.put("vod_pic", html.optString("vod_pic"));
         vod.put("type_name", html.optString("vod_class"));
         vod.put("vod_year", html.optString("vod_year"));
         vod.put("vod_area", html.optString("vod_area"));

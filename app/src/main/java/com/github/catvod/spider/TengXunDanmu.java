@@ -223,7 +223,7 @@ public class TengXunDanmu extends Spider {
                         .put("vod_year", params.optString("year")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -262,6 +262,9 @@ public class TengXunDanmu extends Spider {
                 .getJSONArray("module_datas").getJSONObject(0).getJSONObject("item_data_lists")
                 .getJSONArray("item_datas").getJSONObject(0).getJSONObject("item_params");
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", id);
+        vod.put("vod_name", xq.optString("title"));
+        vod.put("vod_pic", xq.optString("image_url_vertical"));
         vod.put("type_name", xq.optString("main_genres"));
         vod.put("vod_year", xq.optString("year"));
         vod.put("vod_area", xq.optString("area_name"));

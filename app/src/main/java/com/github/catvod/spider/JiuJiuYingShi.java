@@ -208,7 +208,7 @@ public class JiuJiuYingShi extends Spider {
                         .put("vod_year", item.optString("year")));
             }
         }
-        return new JSONObject().put("page", pg).put("pagecount", 99999).put("limit", videos.length())
+        return new JSONObject().put("page", Integer.parseInt(pg)).put("pagecount", 99999).put("limit", videos.length())
                 .put("total", 99999).put("list", videos).toString();
     }
 
@@ -264,6 +264,9 @@ public class JiuJiuYingShi extends Spider {
             }
         }
         JSONObject vod = new JSONObject();
+        vod.put("vod_id", ids.get(0));
+        vod.put("vod_name", res.optString("name"));
+        vod.put("vod_pic", res.optString("pic"));
         vod.put("type_name", res.optString("class"));
         vod.put("vod_year", res.optString("year"));
         vod.put("vod_area", res.optString("area"));
