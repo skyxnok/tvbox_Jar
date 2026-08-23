@@ -44,8 +44,8 @@ jobs:
           path: ./jar/bg/*
       - name: Commit and push changes
         run: |
-            git config --local user.email bglhcode@icloud.com
-            git config --local user.name bgcode
+            git config --local user.email skyxnok@icloud.com
+            git config --local user.name skyxnok
             git pull
             git add ./jar/bgcode* ./config/version 
             git commit -m "更新jar包  时间：$(date +'%Y-%m-%d %H:%M:%S')"
