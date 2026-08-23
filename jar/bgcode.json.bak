@@ -299,6 +299,63 @@
       "type": 3,
       "api": "XingYaDuanJu",
       "searchable": 1
+    },
+    {
+      "key": "csp_Aidi",
+      "name": "影视｜爱迪影视",
+      "type": 3,
+      "api": "csp_Aidi",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Auete",
+      "name": "影视｜Auete",
+      "type": 3,
+      "api": "csp_Auete",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Cokemv",
+      "name": "影视｜COKEMV",
+      "type": 3,
+      "api": "csp_Cokemv",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Juhi",
+      "name": "影视｜聚核",
+      "type": 3,
+      "api": "csp_Juhi",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Imaple",
+      "name": "影视｜蜜枫",
+      "type": 3,
+      "api": "csp_Imaple",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Bilituys",
+      "name": "影视｜哔哩兔",
+      "type": 3,
+      "api": "csp_Bilituys",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Voflix",
+      "name": "影视｜Voflix",
+      "type": 3,
+      "api": "csp_Voflix",
+      "searchable": 1,
+      "ext": "https://www.voflix.me/"
+    },
+    {
+      "key": "csp_XingYiYing",
+      "name": "影视｜星影影视",
+      "type": 3,
+      "api": "csp_XingYiYing",
+      "searchable": 1
     }
   ],
   "parses": [

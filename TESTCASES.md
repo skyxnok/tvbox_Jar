@@ -426,3 +426,40 @@
 - 各源 `playerContent` 实际可播性（部分源需登录/签名/反爬，无法本地全量验证）。
 - `searchContent` 关键词结果可用性。
 - 建议在 TVBox 中逐源点开详情页确认标题/封面/线路集数显示。
+
+---
+
+## 31. 网络收集新增源（2026-08-23 合并）
+
+> 来源：`github.com/1503304024/CatVodTVSpider`（经典 catvod API，与仓库 `OkHttpUtil/Misc/OKCallBack` 完全兼容）与 `github.com/liuyunfeng001/CatVodTVSpider1`。
+> 选择标准：与现有 46 个类去重、站点存活、返回格式符合本文件第 0 节标准。
+
+| 类名 | 站点 | 说明 |
+| --- | --- | --- |
+| `Aidi` | https://aidi.tv | 爱迪影视，MacCMS 页面解析，多播放源按 `or` 排序 |
+| `Auete` | https://auete.com | Auete 影视网 |
+| `Cokemv` | https://cokemv.me | COKEMV 影院 |
+| `Juhi` | https://www.juhi.cc | 聚核，含内置播放源/筛选配置 |
+| `Imaple` | https://imaple.co | 蜜枫，带 Cloudflare 校验，可能需代理 |
+| `Bilituys` | https://www.bilituys.com | 哔哩兔影视，`/bilishow/` 分类 |
+| `Voflix` | https://www.voflix.me | 域名易变，**必须**在站点 `ext` 填域名 |
+| `XingYiYing` | https://www.xingyiying.com | 星影影视 |
+
+### 格式要点
+
+- `Aidi/Auete/Cokemv/Juhi/Imaple`：`categoryContent` 返回 `page`(int)/`pagecount`/`limit`/`total`/`list`；`detailContent` 标准 `vod_*` 全字段 + `vod_play_from/vod_play_url`（多线路 `$$$`、集内 `$`、集间 `#`）。
+- `Bilituys/Voflix`：原版缺少 `page` 字段，已补 `"page": Integer.parseInt(pg)`。
+- `Voflix.init(Context,String)` 依赖 `ext` 域名，配置里已带 `ext: https://www.voflix.me/`。
+- `Juhi/Ysgc` 等经典类 `init` 补了 `throws Exception` 以匹配本仓库 `Spider.init` 签名（原 fork 基类不抛异常）。
+
+### 未收录说明（站点已失效/域名出售）
+
+- `Ysgc`(ik4.cc 域名出售)、`Jumi`、`N0ys`、`Nekk`、`Nfx`、`Buka`、`YydsAli1`、`Enlienli`、`AppYs`、`Ysdq`、`NongMing` 等未并入。
+- `DoubanForTVBox` 与现有 `Douban.java` 重复，未并入。
+- XPath 系列（`XPathEgg/XPathBde4` 等）依赖已失效的外部解密接口，未并入。
+
+### 打包状态
+
+- `./gradlew :app:assembleRelease` 编译通过。
+- `./jar/genJar.sh` 打包：`jar/bgcode.jar` md5 `40a3ade151a175923964a7ad40dc5472`，`jar/bgcode.json` 与 `jar/bg/` 已同步。
+- `jar/bgcode.json` sites：41 → 49（新增 8 个）。
