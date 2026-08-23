@@ -1,5 +1,5 @@
 {
-  "spider": "https://tvbox.201562.xyz/jar/bgcode.jar;md5;57207be20db6c4e7b462c673ac9280e4",
+  "spider": "https://tvbox.201562.xyz/jar/bgcode.jar;md5;10bcf6e407c291d70c080ba46845f54f",
   "lives": [
     {
       "name": "kimwang1978收集的直播【github】",
@@ -92,6 +92,212 @@
       "name": "影视｜360",
       "type": 3,
       "api": "csp_SP360",
+      "searchable": 1
+    },
+    {
+      "key": "csp_AiZhan",
+      "name": "动漫｜爱站",
+      "type": 3,
+      "api": "AiZhan",
+      "searchable": 1
+    },
+    {
+      "key": "csp_QingKong",
+      "name": "动漫｜青空次元",
+      "type": 3,
+      "api": "QingKong",
+      "searchable": 1
+    },
+    {
+      "key": "csp_CiYuanCheng",
+      "name": "动漫｜次元城",
+      "type": 3,
+      "api": "CiYuanCheng",
+      "searchable": 1
+    },
+    {
+      "key": "csp_MiaoKan4K",
+      "name": "影视｜秒看4K",
+      "type": 3,
+      "api": "MiaoKan4K",
+      "searchable": 1
+    },
+    {
+      "key": "csp_KuaiYing4K",
+      "name": "影视｜快映4K",
+      "type": 3,
+      "api": "KuaiYing4K",
+      "searchable": 1
+    },
+    {
+      "key": "csp_JinPaiYingYuan",
+      "name": "影视｜金牌影院",
+      "type": 3,
+      "api": "JinPaiYingYuan",
+      "searchable": 1
+    },
+    {
+      "key": "csp_FengYe4K",
+      "name": "影视｜枫叶4K",
+      "type": 3,
+      "api": "FengYe4K",
+      "searchable": 1
+    },
+    {
+      "key": "csp_XiFanDongMan",
+      "name": "动漫｜稀饭动漫",
+      "type": 3,
+      "api": "XiFanDongMan",
+      "searchable": 1
+    },
+    {
+      "key": "csp_JianPian",
+      "name": "影视｜荐片",
+      "type": 3,
+      "api": "JianPian",
+      "searchable": 1
+    },
+    {
+      "key": "csp_XiaFan4K",
+      "name": "影视｜下饭4K",
+      "type": 3,
+      "api": "XiaFan4K",
+      "searchable": 1
+    },
+    {
+      "key": "csp_DuBoKu",
+      "name": "影视｜独播库",
+      "type": 3,
+      "api": "DuBoKu",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Mino4K",
+      "name": "影视｜MINO4K",
+      "type": 3,
+      "api": "Mino4K",
+      "searchable": 1
+    },
+    {
+      "key": "csp_BiliHeji",
+      "name": "影视｜哔哩合集",
+      "type": 3,
+      "api": "BiliHeji",
+      "searchable": 1
+    },
+    {
+      "key": "csp_BiliYingshi",
+      "name": "影视｜哔哩影视官方",
+      "type": 3,
+      "api": "BiliYingshi",
+      "searchable": 1
+    },
+    {
+      "key": "csp_BiliYinyue",
+      "name": "音乐｜哔哩音乐",
+      "type": 3,
+      "api": "BiliYinyue",
+      "searchable": 1
+    },
+    {
+      "key": "csp_TengXunDanmu",
+      "name": "影视｜腾讯弹幕",
+      "type": 3,
+      "api": "TengXunDanmu",
+      "searchable": 1
+    },
+    {
+      "key": "csp_MuteFun",
+      "name": "动漫｜无声动漫",
+      "type": 3,
+      "api": "MuteFun",
+      "searchable": 1
+    },
+    {
+      "key": "csp_MiFun",
+      "name": "动漫｜MiFun",
+      "type": 3,
+      "api": "MiFun",
+      "searchable": 1
+    },
+    {
+      "key": "csp_SanHaoDongMan",
+      "name": "动漫｜三号动漫",
+      "type": 3,
+      "api": "SanHaoDongMan",
+      "searchable": 1
+    },
+    {
+      "key": "csp_DongManGongHeGuo",
+      "name": "动漫｜动漫共和国",
+      "type": 3,
+      "api": "DongManGongHeGuo",
+      "searchable": 1
+    },
+    {
+      "key": "csp_ManShanDongMan",
+      "name": "动漫｜漫闪动漫",
+      "type": 3,
+      "api": "ManShanDongMan",
+      "searchable": 1
+    },
+    {
+      "key": "csp_HanXiaoQuan",
+      "name": "影视｜韩小圈",
+      "type": 3,
+      "api": "HanXiaoQuan",
+      "searchable": 1
+    },
+    {
+      "key": "csp_DuoDuoZhuiJu",
+      "name": "影视｜多多追剧",
+      "type": 3,
+      "api": "DuoDuoZhuiJu",
+      "searchable": 1,
+      "ext": "{\"host\": \"https://bubutv.top\", \"finger\": \"SF-C3B2B41F6EFFFF9869176CF68F6790E8F07506FC88632C94B4F5F0430D5498CA\", \"sk\": \"SK-random\", \"ave\": \"8\", \"avn\": \"1.6.1\", \"aid\": \"com.sunshine.tv\"}"
+    },
+    {
+      "key": "csp_GuaZiYingShi",
+      "name": "影视｜瓜子影视",
+      "type": 3,
+      "api": "GuaZiYingShi",
+      "searchable": 1,
+      "ext": "{\"host\": \"https://api.36kzbh85.com\"}"
+    },
+    {
+      "key": "csp_LingDu4K",
+      "name": "影视｜零度4K",
+      "type": 3,
+      "api": "LingDu4K",
+      "searchable": 1
+    },
+    {
+      "key": "csp_Lanerc",
+      "name": "动漫｜Lanerc",
+      "type": 3,
+      "api": "Lanerc",
+      "searchable": 1
+    },
+    {
+      "key": "csp_JiuJiuYingShi",
+      "name": "影视｜99影视",
+      "type": 3,
+      "api": "JiuJiuYingShi",
+      "searchable": 1,
+      "ext": "{\"host\": \"http://111.170.140.70:19987/app/bn\", \"appkey\": \"\", \"versionName\": \"\", \"name\": \"\", \"buildSignature\": \"\"}"
+    },
+    {
+      "key": "csp_HeMaDuanJu",
+      "name": "短剧｜河马短剧",
+      "type": 3,
+      "api": "HeMaDuanJu",
+      "searchable": 1
+    },
+    {
+      "key": "csp_XingYaDuanJu",
+      "name": "短剧｜星芽短剧",
+      "type": 3,
+      "api": "XingYaDuanJu",
       "searchable": 1
     }
   ],

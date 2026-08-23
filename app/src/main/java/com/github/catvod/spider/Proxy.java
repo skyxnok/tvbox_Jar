@@ -21,6 +21,8 @@ import com.github.catvod.parser.MixWeb;
 import java.io.ByteArrayInputStream;
 import java.util.Map;
 
+import org.json.JSONObject;
+
 public class Proxy extends Spider {
 
     public static int localPort = -1;
@@ -68,10 +70,41 @@ public class Proxy extends Spider {
                 return MixDemo.loadHtml(params.get("flag"), params.get("url"));
             } else if (what.equals("MixWeb")) {
                 return MixWeb.loadHtml(params.get("flag"), params.get("url"));
+            } else if (what.equals("bili")) {
+                return biliMpd(params);
+            } else if (what.equals("tencent")) {
+                String xml = TengXunDanmu.danmuXml(params.get("url"));
+                Object[] result = new Object[3];
+                result[0] = 200;
+                result[1] = "application/xml";
+                result[2] = new ByteArrayInputStream(xml.getBytes("UTF-8"));
+                return result;
+            } else if (what.equals("hanju")) {
+                String m3u8 = HanXiaoQuan.m3u8(params.get("pid"), params.get("sq"));
+                Object[] result = new Object[3];
+                result[0] = 200;
+                result[1] = "application/x-mpegurl";
+                result[2] = new ByteArrayInputStream(m3u8.getBytes("UTF-8"));
+                return result;
             } 
         } catch (Throwable th) {
             th.printStackTrace();
         }
         return null;
+    }
+
+    private static Object[] biliMpd(Map<String, String> params) throws Exception {
+        String bvid = params.get("bvid");
+        String cid = params.get("cid");
+        String qn = params.get("qn");
+        String epId = params.get("ep_id");
+        String seasonId = params.get("season_id");
+        JSONObject html = BiliCommon.request(BiliCommon.playUrl(bvid, cid, epId, seasonId));
+        String mpd = BiliCommon.buildMpd(html, qn);
+        Object[] result = new Object[3];
+        result[0] = 200;
+        result[1] = "application/dash+xml";
+        result[2] = new ByteArrayInputStream(mpd.getBytes("UTF-8"));
+        return result;
     }
 }
